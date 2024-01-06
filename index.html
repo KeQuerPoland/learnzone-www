@@ -57,14 +57,20 @@ strong {
   
   <div class="container">
     <h1>Kalkulator prowizji</h1>
-    <div class="input-field">
-      <label for="kwota">Kwota:</label>
-      <input type="number" name="kwota" id="kwota" min="5" max="1000" required>
-    </div>
-    <div class="input-field">
-      <label for="ilosc">Ilość:</label>
-      <input type="number" name="ilosc" id="ilosc" min="1" max="1000" required>
-    </div>
+
+<div class="input-field">
+  <label for="kwota">Kwota:</label>
+  <input type="number" name="kwota" id="kwota" min="5" max="1000" required>
+</div>
+<div class="input-field">
+  <label for="ilosc">Ilość:</label>
+  <input type="number" name="ilosc" id="ilosc" min="1" max="1000" required>
+</div>
+<div class="input-field">
+  <input type="submit" value="Oblicz">
+</div>
+
+    
     <div class="wynik">
       <h2>Wynik</h2>
       <div class="box">
@@ -88,6 +94,10 @@ strong {
       </div>
     </div>
   </div>
+
+  <script>
+  document.querySelector("input[type=submit]").addEventListener("click", oblicz);
+  </script>
 <script>
 function oblicz() {
   // Pobierz kwotę z formularza
