@@ -61,6 +61,10 @@ strong {
       <label for="kwota">Kwota:</label>
       <input type="number" name="kwota" id="kwota" min="5" max="1000" required>
     </div>
+    <div class="input-field">
+      <label for="ilosc">Ilość:</label>
+      <input type="number" name="ilosc" id="ilosc" min="1" max="1000" required>
+    </div>
     <div class="wynik">
       <h2>Wynik</h2>
       <div class="box">
@@ -68,7 +72,7 @@ strong {
       </div>
       <div class="box">
         <p>Prowizja Stripe: <strong id="prowizja-stripe"></strong></p>
-        <p>Kwota po odliczeniu prowizji Stripe: <strong id="kwota-po-stripe"></strong></p>
+        <p>Kwota po odliczeniu prowizji Stripe: <strong id="prowizja-platformy"></strong></p>
       </div>
       <div class="box">
         <p>Prowizja platformy: <strong id="prowizja-platformy"></strong></p>
@@ -78,16 +82,19 @@ strong {
         <p>Zysk: <strong id="zysk"></strong></p>
         <p>Zysk platformy: <strong id="zysk-platformy"></strong></p>
       </div>
+      <div class="box">
+        <p>Zysk całkowity: <strong id="zysk-calkowity"></strong></p>
+        <p>Zysk platformy całkowity: <strong id="zysk-platformy-calkowity"></strong></p>
+      </div>
     </div>
   </div>
 
-
-
-  <script>
-
-    function oblicz() {
+function oblicz() {
   // Pobierz kwotę z formularza
   let kwota = document.querySelector("#kwota").value;
+
+  // Pobierz ilość z formularza
+  let ilosc = document.querySelector("#ilosc").value;
 
   // Oblicz prowizję Stripe
   let prowizjaStripe = kwota * 0.015 + 1;
@@ -107,15 +114,20 @@ strong {
   // Oblicz zysk platformy
   let zyskPlatformy = kwotaPoPlatformie * 0.8;
 
+  // Oblicz łączny zysk
+  let zyskCalkowity = zysk * ilosc;
+
+  // Oblicz łączny zysk platformy
+  let zyskPlatformyCalkowity = zyskPlatformy * ilosc;
+
   // Wyświetl wyniki
   document.querySelector("#kwota-brutto").textContent = kwota;
   document.querySelector("#prowizja-stripe").textContent = prowizjaStripe;
   document.querySelector("#prowizja-platformy").textContent = prowizjaPlatformy;
   document.querySelector("#zysk").textContent = zysk;
   document.querySelector("#zysk-platformy").textContent = zyskPlatformy;
+  document.querySelector("#zysk-calkowity").textContent = zyskCalkowity;
+  document.querySelector("#zysk-platformy-calkowity").textContent = zyskPlatformyCalkowity;
 }
-
-  </script>
 </body>
 </html>
- 
