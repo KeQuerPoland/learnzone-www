@@ -1,1 +1,121 @@
-Welcome 1236
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Kalkulator prowizji</title>
+</head>
+<body>
+ <style>
+   body {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.container {
+  width: 500px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+.input-field {
+  margin-bottom: 20px;
+}
+
+.wynik {
+  margin-top: 20px;
+}
+
+.box {
+  width: 250px;
+  margin-right: 20px;
+  border: 1px solid #000;
+  padding: 20px;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+strong {
+  font-weight: bold;
+}
+
+.arrow {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 10px solid #000;
+  margin-top: 20px;
+  margin-right: 10px;
+}
+
+ </style>
+  
+  <div class="container">
+    <h1>Kalkulator prowizji</h1>
+    <div class="input-field">
+      <label for="kwota">Kwota:</label>
+      <input type="number" name="kwota" id="kwota" min="5" max="1000" required>
+    </div>
+    <div class="wynik">
+      <h2>Wynik</h2>
+      <div class="box">
+        <p>Kwota brutto: <strong id="kwota-brutto"></strong></p>
+      </div>
+      <div class="box">
+        <p>Prowizja Stripe: <strong id="prowizja-stripe"></strong></p>
+        <p>Kwota po odliczeniu prowizji Stripe: <strong id="kwota-po-stripe"></strong></p>
+      </div>
+      <div class="box">
+        <p>Prowizja platformy: <strong id="prowizja-platformy"></strong></p>
+        <p>Kwota po odliczeniu prowizji platformy: <strong id="kwota-po-platformie"></strong></p>
+      </div>
+      <div class="box">
+        <p>Zysk: <strong id="zysk"></strong></p>
+        <p>Zysk platformy: <strong id="zysk-platformy"></strong></p>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script>
+
+    function oblicz() {
+  // Pobierz kwotę z formularza
+  let kwota = document.querySelector("#kwota").value;
+
+  // Oblicz prowizję Stripe
+  let prowizjaStripe = kwota * 0.015 + 1;
+
+  // Oblicz kwotę po odliczeniu prowizji Stripe
+  let kwotaPoStripe = kwota - prowizjaStripe;
+
+  // Oblicz prowizję platformy
+  let prowizjaPlatformy = kwotaPoStripe * 0.2;
+
+  // Oblicz kwotę po odliczeniu prowizji platformy
+  let kwotaPoPlatformie = kwotaPoStripe - prowizjaPlatformy;
+
+  // Oblicz zysk
+  let zysk = kwotaPoPlatformie - kwota;
+
+  // Oblicz zysk platformy
+  let zyskPlatformy = kwotaPoPlatformie * 0.8;
+
+  // Wyświetl wyniki
+  document.querySelector("#kwota-brutto").textContent = kwota;
+  document.querySelector("#prowizja-stripe").textContent = prowizjaStripe;
+  document.querySelector("#prowizja-platformy").textContent = prowizjaPlatformy;
+  document.querySelector("#zysk").textContent = zysk;
+  document.querySelector("#zysk-platformy").textContent = zyskPlatformy;
+}
+
+  </script>
+</body>
+</html>
+ 
